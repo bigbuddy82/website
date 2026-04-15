@@ -4,114 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
     <style>
-        .brand-gradient { 
-            background: linear-gradient(135deg, #630100 0%, #da0500 100%); 
+        :root {
+            --brand-dark: #630100;
+            --brand-light: #da0500;
         }
-        .text-brand-dark { color: #630100; }
-        .bg-brand-dark { background-color: #630100; }
-        
-        .feature-card {
-            background: #ffffff;
-            border: 1px solid #f1f1f1;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        body {
+            background-color: #fff;
+            font-family: 'Space Mono', monospace;
+            cursor: crosshair;
         }
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -10px rgba(99, 1, 0, 0.15);
-            border-color: #da0500;
+        h1, h2 { font-family: 'Syne', sans-serif; }
+
+        /* Retro Hard Shadow Effect */
+        .retro-card {
+            background: white;
+            border: 3px solid #000;
+            box-shadow: 8px 8px 0px #000;
+            transition: all 0.2s;
+        }
+        .retro-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 12px 12px 0px var(--brand-light);
         }
 
-        .section-tint { background-color: #fafafa; }
+        .retro-btn {
+            background: var(--brand-light);
+            color: white;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            transition: all 0.1s;
+        }
+        .retro-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px #000;
+        }
+
+        .brand-gradient-text {
+            background: linear-gradient(to right, #630100, #da0500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Scanline Overlay Effect */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.03) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
     </style>
 </head>
-<body class="bg-white text-gray-800 font-sans">
+<body>
+    <div class="scanlines"></div>
 
-    <header class="brand-gradient text-white py-20 px-6 text-center shadow-xl">
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Premium Web Design</h1>
-        <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto mb-10">
-            Professional E-commerce & Business sites that drive results.
+    <nav class="border-b-4 border-black p-4 flex justify-between items-center sticky top-0 bg-white z-40">
+        <span class="font-bold text-xl tracking-tighter border-2 border-black px-2 bg-black text-white">WEB.OS</span>
+        <div class="space-x-4 hidden md:block">
+            <a href="#work" class="hover:underline font-bold">SERVICES</a>
+            <a href="#contact" class="hover:underline font-bold">CONTACT</a>
+        </div>
+    </nav>
+
+    <header class="py-20 px-6 text-center border-b-4 border-black bg-slate-50">
+        <div class="inline-block border-2 border-black px-4 py-1 mb-6 bg-yellow-300 font-bold uppercase tracking-widest text-sm shadow-[4px_4px_0px_#000]">
+            Established 2026
+        </div>
+        <h1 class="text-5xl md:text-8xl font-black mb-6 uppercase italic">
+            <span class="brand-gradient-text">Affordable</span><br>Web Design
+        </h1>
+        <p class="text-xl max-w-2xl mx-auto mb-10 font-bold border-l-4 border-black pl-4">
+            High-converting E-commerce and Business sites. No fluff. No high agency fees. Just results.
         </p>
-        <a href="#contact" class="bg-white text-brand-dark font-bold py-4 px-10 rounded-full text-lg hover:shadow-2xl transition-all uppercase tracking-wider inline-block">
-            Get Started
-        </a>
+        <div class="flex flex-col md:flex-row justify-center gap-6">
+            <a href="#contact" class="retro-btn px-10 py-4 text-xl font-bold uppercase">Hire Us</a>
+            <a href="#work" class="border-3 border-black px-10 py-4 text-xl font-bold uppercase bg-white hover:bg-black hover:text-white transition shadow-[4px_4px_0px_#000]">Portfolio</a>
+        </div>
     </header>
 
-    <section class="max-w-6xl mx-auto py-20 px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            
-            <div class="feature-card p-10 rounded-3xl text-center">
-                <div class="w-16 h-16 brand-gradient rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-lg">🛒</div>
-                <h3 class="text-xl font-bold mb-3 text-brand-dark">E-commerce Stores</h3>
-                <p class="text-gray-500 leading-relaxed">Full storefronts with secure checkout and inventory tools.</p>
+    <section id="work" class="max-w-7xl mx-auto py-20 px-6">
+        <h2 class="text-4xl font-black mb-16 uppercase underline decoration-brand-light underline-offset-8 text-center md:text-left">Selected Services</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="retro-card p-8">
+                <div class="text-5xl mb-6">🛒</div>
+                <h3 class="text-2xl font-black mb-4 uppercase tracking-tighter">E-Commerce</h3>
+                <p class="text-gray-700 leading-relaxed font-bold">Shopify & WooCommerce experts. Turn your products into revenue with a seamless checkout experience.</p>
             </div>
 
-            <div class="feature-card p-10 rounded-3xl text-center">
-                <div class="w-16 h-16 brand-gradient rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-lg">🎨</div>
-                <h3 class="text-xl font-bold mb-3 text-brand-dark">Custom Design</h3>
-                <p class="text-gray-500 leading-relaxed">Tailored layouts designed to match your unique identity.</p>
+            <div class="retro-card p-8">
+                <div class="text-5xl mb-6">🖌️</div>
+                <h3 class="text-2xl font-black mb-4 uppercase tracking-tighter">UI Design</h3>
+                <p class="text-gray-700 leading-relaxed font-bold">Custom layouts designed specifically for your brand. No generic templates, ever.</p>
             </div>
 
-            <div class="feature-card p-10 rounded-3xl text-center">
-                <div class="w-16 h-16 brand-gradient rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-lg">⚡</div>
-                <h3 class="text-xl font-bold mb-3 text-brand-dark">Speed Optimized</h3>
-                <p class="text-gray-500 leading-relaxed">Ultra-fast loading times to ensure you never lose a customer.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="section-tint py-20 px-6">
-        <div class="max-w-5xl mx-auto bg-white p-10 md:p-16 rounded-[2rem] shadow-xl border border-gray-100">
-            <h2 class="text-3xl font-bold mb-12 text-brand-dark text-center">Why Work With Us?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <div class="flex flex-col items-center text-center gap-4">
-                    <span class="text-3xl text-brand-dark">💰</span>
-                    <div>
-                        <h4 class="font-bold text-lg mb-1">Affordable Packages</h4>
-                        <p class="text-sm text-gray-500">Transparent pricing with no hidden agency fees or surprises.</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col items-center text-center gap-4">
-                    <span class="text-3xl text-brand-dark">📱</span>
-                    <div>
-                        <h4 class="font-bold text-lg mb-1">Mobile First</h4>
-                        <p class="text-sm text-gray-500">Optimized for a seamless browsing experience on all modern devices.</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col items-center text-center gap-4">
-                    <span class="text-3xl text-brand-dark">🚀</span>
-                    <div>
-                        <h4 class="font-bold text-lg mb-1">Scalable Solutions</h4>
-                        <p class="text-sm text-gray-500">Clean, professional code ready to grow alongside your business.</p>
-                    </div>
-                </div>
-
+            <div class="retro-card p-8">
+                <div class="text-5xl mb-6">⚡</div>
+                <h3 class="text-2xl font-black mb-4 uppercase tracking-tighter">Optimization</h3>
+                <p class="text-gray-700 leading-relaxed font-bold">Fast-loading, SEO-ready code. Because a slow website is a dead website.</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 px-6 text-center">
-        <div class="brand-gradient text-white p-12 rounded-[2.5rem] max-w-4xl mx-auto shadow-2xl">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to launch?</h2>
-            <p class="mb-10 text-lg opacity-90">Get a high-quality website that fits your budget.</p>
+    <section class="bg-black text-white py-20 px-6 overflow-hidden">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl font-black mb-12 uppercase text-center md:text-left">Why Work With Us?</h2>
+            <div class="space-y-8">
+                <div class="flex items-center gap-6 border-b border-zinc-800 pb-6 group">
+                    <span class="text-4xl font-black text-zinc-700 group-hover:text-brand-light transition">01</span>
+                    <h4 class="text-2xl font-bold uppercase">Affordable Packages for Startups</h4>
+                </div>
+                <div class="flex items-center gap-6 border-b border-zinc-800 pb-6 group">
+                    <span class="text-4xl font-black text-zinc-700 group-hover:text-brand-light transition">02</span>
+                    <h4 class="text-2xl font-bold uppercase">Mobile-First Responsive Coding</h4>
+                </div>
+                <div class="flex items-center gap-6 border-b border-zinc-800 pb-6 group">
+                    <span class="text-4xl font-black text-zinc-700 group-hover:text-brand-light transition">03</span>
+                    <h4 class="text-2xl font-bold uppercase">Scalable & Future-Proof Code</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 text-center bg-white">
+        <div class="retro-card inline-block max-w-4xl p-12 bg-white mx-auto">
+            <h2 class="text-4xl md:text-6xl font-black mb-6 uppercase italic">Ready to Start?</h2>
+            <p class="text-xl mb-10 font-bold opacity-70">DM for a quote or a free consultation session.</p>
             
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="https://wa.me/91YOURNUMBER" class="bg-white text-brand-dark font-bold py-4 px-10 rounded-2xl hover:bg-gray-100 transition shadow-lg">
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <a href="https://wa.me/91YOURNUMBER" class="retro-btn px-12 py-5 text-xl font-bold uppercase tracking-widest">
                     WhatsApp Me
                 </a>
-                <a href="mailto:your@email.com" class="bg-black/20 backdrop-blur-md border border-white/30 text-white font-bold py-4 px-10 rounded-2xl hover:bg-black/30 transition">
+                <a href="mailto:your@email.com" class="border-4 border-black px-12 py-5 text-xl font-bold uppercase hover:bg-black hover:text-white transition">
                     Email Inquiry
                 </a>
             </div>
         </div>
     </section>
 
-    <div class="py-10"></div>
+    <div class="py-10 bg-white"></div>
 
 </body>
 </html>
